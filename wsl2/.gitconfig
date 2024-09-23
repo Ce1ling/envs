@@ -7,7 +7,9 @@
 [user]
 	name = Ce1ling
 	email = 2134045201@qq.com
+
 [http]
 	proxy = http://172.17.48.1:7890
+
 [https]
 	proxy = http://172.17.48.1:7890

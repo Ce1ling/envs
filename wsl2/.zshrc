@@ -19,6 +19,9 @@ proxy_url="http://$host_ip:7890"
 npm config set proxy $proxy_url
 npm config set https-proxy $proxy_url
 
+pnpm config set proxy $proxy_url
+pnpm config set https-proxy $proxy_url
+
 git config --global http.proxy $proxy_url
 git config --global https.proxy $proxy_url
 
