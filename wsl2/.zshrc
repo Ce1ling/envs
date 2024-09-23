@@ -14,20 +14,23 @@ bindkey '^[[Z' autosuggest-accept
 
 # proxy
 host_ip=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
-proxy_port=7890
+proxy_url="http://$host_ip:7890"
 
-npm config set proxy "http://$host_ip:$proxy_port"
-npm config set https-proxy "http://$host_ip:$proxy_port"
+npm config set proxy $proxy_url
+npm config set https-proxy $proxy_url
+
+git config --global http.proxy $proxy_url
+git config --global https.proxy $proxy_url
 
 function px1() {
-  export http_proxy="http://$host_ip:$proxy_port"
-  export https_proxy="http://$host_ip:$proxy_port"
+  export http_proxy=$proxy_url
+  export https_proxy=$proxy_url
   export no_proxy="$host_ip,localhost"
-	export all_proxy="http://$host_ip:$proxy_port"
-  export HTTP_PROXY="http://$host_ip:$proxy_port"
-  export HTTPS_PROXY="http://$host_ip:$proxy_port"
+	export all_proxy=$proxy_url
+  export HTTP_PROXY=$proxy_url
+  export HTTPS_PROXY=$proxy_url
   export NO_PROXY="$host_ip,localhost"
-	export ALL_PROXY="http://$host_ip:$proxy_port"
+	export ALL_PROXY=$proxy_url
   echo -e "\033[32m[√] Proxy on\033[0m"
 }
 
